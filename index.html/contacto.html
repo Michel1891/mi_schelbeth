@@ -41,6 +41,25 @@
       padding: 10px;
       font-size: 16px;
     }
+    @keyframes entrada {
+      0% {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes brillo {
+      0% {
+        text-shadow: 0 0 5px #021a15, 0 0 10px #02130f;
+      }
+      100% {
+        text-shadow: 0 0 15px #031411, 0 0 30px #011612;
+      }
+    }
   
     button {
       padding: 10px 18px;
@@ -84,7 +103,7 @@
 
 <div class="contenido">
   <!-- Título -->
-  <h1 class="titulo">Nuestro trabajos realizados</h1>
+  <h1 class="titulo">Contactos</h1>
 
   <!-- Botón de volver -->
   <button onclick="location.href='inicio.html'">Inicio</button>
@@ -107,7 +126,7 @@
       e.preventDefault();
 
       // Reemplaza con tu número (solo dígitos, con código de país, sin +)
-      const numero = "59894322306"; // Ej: Uruguay +598
+      const numero = "59891947036"; // Ej: Uruguay +598
 
       // Capturar datos
       const nombre  = document.getElementById("nombre").value;
