@@ -4,46 +4,66 @@
   <meta charset="UTF-8" />
   <title>Álbum protegido — Nuestros trabajos</title>
   <style>
-
-
-    /* Fondo fijo visible con blur */
+    /* === TU CSS (sin cambios grandes) === */
     .fondo {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
+      position: fixed;top:0;left:0;width:100%;height:100%;
+      object-fit: cover;z-index:-1;
     }
-    .contenido {
-      position: relative;
-      z-index: 1;
-      padding: 50px 20px;
+    body {font-family: Arial, sans-serif;text-align:center;background:#f5f5f5;padding-top:40px;}
+    .titulo {font-size:2.5rem;color:#1fabc4;text-align:center;animation:entrada 4s ease-out forwards, brillo 6s infinite alternate;opacity:0;margin:0 auto 20px auto;}
+    .galeria {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;align-items:start;margin-bottom:30px;}
+    .foto-card{width:100%;max-width:320px;background:rgba(0,0,0,0.25);padding:12px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.7);position:relative;margin:0 auto;}
+    .foto{width:100%;aspect-ratio:10/10;border-radius:10px;background-size:cover;background-position:center;border:6px solid #444;cursor:pointer;transition:transform .28s ease;user-select:none;}
+    .foto:hover{transform:translateY(-6px) scale(1.02);}
+    .protector{position:absolute;inset:0;background:transparent;z-index:3;}
+    .leyenda{margin-top:10px;text-align:left;font-size:0.95rem;color:#140505}
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.85);z-index:9999;padding:20px;}
+    .modal.open{display:flex;}
+    .modal-content{width:100%;max-width:1200px;border-radius:12px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.9);background:#0b0b0b;}
+    .modal-img{width:100%;height:80vh;background-size:contain;background-repeat:no-repeat;background-position:center;}
+    .watermark{position:absolute;right:16px;bottom:16px;font-weight:700;font-size:18px;color:rgba(255,255,255,0.18);}
+    .modal-close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.1);border:none;padding:8px 10px;border-radius:8px;color:#fff;cursor:pointer;}
+    .nota{margin-top:18px;color:#141212;font-size:0.85rem}
+    .logo {
+      width: 100px;
+      height: auto;
+      z-index: 2;
+      margin-bottom: 40px;
+      animation: aparecerZoom 4s ease-out forwards, flotar 6s ease-in-out infinite;
+      opacity: 0;
+  
+    }
+
+    @keyframes aparecerZoom {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
     }
 
     .titulo {
-      font-size: 2.5rem;
+      font-size: 3.5rem;
       color: #1fabc4;
-      text-align: center; /* centrado */
       animation: entrada 4s ease-out forwards, brillo 6s infinite alternate;
       opacity: 0;
-      margin: 0 auto 20px auto;
     }
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #f5f5f5;
-      padding-top: 40px;
-    }
-    input, textarea {
-      display: block;
-      margin: 10px auto;
-      width: 90%;
-      max-width: 400px;
-      padding: 10px;
-      font-size: 16px;
-    }
+
     @keyframes entrada {
       0% {
         transform: translateY(-50px);
@@ -63,278 +83,107 @@
         text-shadow: 0 0 15px #031411, 0 0 30px #011612;
       }
     }
-  
-    .botones {
-      text-align: center; /* centramos todos los botones */
-      margin-bottom: 30px;
-    }
 
-    button {
-      padding: 10px 18px;
-      font-size: 14px;
-      border: none;
-      background-color: transparent;
-      color: #111010;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-      margin: 5px; /* espacio entre botones */
-    }
+    .botonera {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: 10px;
+  padding: 15px 20px;
+  background: transparent;  /* Fondo totalmente transparente */
+  z-index: 10; /* delante del fondo */
+}
 
+.botonera button {
+  padding: 10px 18px;
+  font-size: 14px;
+  border: none;
+  background-color: transparent; /* Fondo transparente */
+  color: #111010; /* Blanco para que se vea sobre la imagen */
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
 
-    button:hover {
-      color: #f0ecec;
-      text-shadow: 0 0 10px #0804f7;
-    }
-
-    .galeria {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      justify-items: center;
-    }
-
-    .galeria img {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 10px;
-      border: 3px solid white;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .galeria img:hover {
-      transform: scale(1.05);
-      border-color: #00c3ff;
-    }
-
-    /* Contenedor principal */
-    .contenido{
-      max-width:1200px;margin:40px auto;padding:24px;
-    }
-
-    .header{
-      display:flex;align-items:center;justify-content:space-between;gap:16px;
-      margin-bottom:18px;
-    }
-
-    h1{
-      margin:0;font-size:1.9rem;color:var(--accent);
-      letter-spacing:0.4px;
-      text-shadow:0 2px 12px rgba(17, 15, 15, 0.6);
-    }
-
-  
-
-    /* Estilo "álbum" */
-    .galeria{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:20px;
-      align-items:start;
-    }
-
-    .foto-card{
-      width:100%;
-      max-width:320px;
-      background: rgba(0,0,0,0.25); /* semitransparente para dejar ver fondo */
-      padding:12px;
-      border-radius:12px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.7);
-      border: 2px solid rgba(255,255,255,0.06);
-      position:relative;
-      margin:0 auto;
-    }
-
-    /* Marco de foto */
-    .foto {
-      width:100%;
-      aspect-ratio:10/10;
-      border-radius:10px;
-      overflow:hidden;
-      position:relative;
-      background-size:cover;
-      background-position:center;
-      border:6px solid var(--frame);
-      box-shadow:0 6px 18px rgba(0,0,0,0.6);
-      cursor:pointer;
-      transition:transform .28s ease, box-shadow .28s ease;
-      -webkit-user-drag: none;
-      user-select:none;
-    }
-
-    .foto:hover{ transform:translateY(-6px) scale(1.02); box-shadow:0 14px 32px rgba(0,0,0,0.8) }
-
-    /* Overlay protector invisible */
-    .protector{
-      position:absolute;inset:0;background:transparent;z-index:3;
-      pointer-events:auto;
-    }
-
-    .leyenda{margin-top:10px;text-align:left;font-size:0.95rem;color:#140505}
-
-    /* Modal / Lightbox */
-    .modal{
-      position:fixed;inset:0;display:none;align-items:center;justify-content:center;
-      background:linear-gradient(180deg, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
-      z-index:9999;padding:20px;
-    }
-
-    .modal.open{display:flex}
-
-    .modal-content{
-      width:100%;max-width:1200px;border-radius:12px;position:relative;
-      box-shadow:0 20px 60px rgba(0,0,0,0.9);overflow:hidden;
-      background: #0b0b0b;
-    }
-
-    .modal-img{
-      width:100%;height:80vh;background-size:contain;background-repeat:no-repeat;background-position:center;
-      position:relative;
-    }
-
-    .watermark{
-      position:absolute;right:16px;bottom:16px;font-weight:700;
-      font-size:18px;color:rgba(255,255,255,0.18);z-index:10;
-      pointer-events:none;user-select:none;
-      text-shadow:0 2px 6px rgba(241, 233, 233, 0.6);
-    }
-
-    .modal-close{
-      position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.04);
-      border:1px solid rgba(255,255,255,0.06);padding:8px 10px;border-radius:8px;color:#131111;cursor:pointer;z-index:20;
-    }
-
-    /* Evitar selección y arrastre globalmente */
-    .galeria, .galeria * { -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; -webkit-user-drag:none; }
-
-    .nota{margin-top:18px;color:#141212;font-size:0.85rem}
-
-    @media (max-width:600px){
-      h1{font-size:1.4rem}
-      .foto-card{max-width:100%}
-      .modal-img{height:65vh}
-    }
+.botonera button:hover {
+  color: #f0ecec;
+  text-shadow: 0 0 10px #0804f7;
+}
   </style>
 </head>
 <body>
   <!-- Fondo -->
   <img class="fondo" src="src/image/fondo2.png" alt="Fondo">
 
-  <!-- Título -->
   <h1 class="titulo">Nuestros trabajos</h1>
-
+  <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
   <div class="contenido">
-    <div class="header">
-      <div class="nav-buttons">
-        <!-- Botón de volver -->
-  <button onclick="location.href='inicio.html'">Inicio</button>
-  <button onclick="location.href='quienessomos.html'">¿Quienes Somos?</button>
-  <button onclick="location.href='nuestrotrabajos.html'">Nuestro Trabajo</button>
-  <button onclick="location.href='equiposqueutilizamos.html'">Equipos que utilizamos</button>
-  <button onclick="location.href='contacto.html'">Contactos</button>
-      </div>
-    </div>
 
-    <!-- Galería -->
-    <div class="galeria" id="galeria">
+    <!-- Galería 1 -->
+    <div class="galeria">
       <div class="foto-card">
-        <div class="foto" role="button" tabindex="0" data-src="src/image/foto5.jpeg"
-             style="background-image:url('src/image/foto5.jpeg')">
-          <div class="protector" title="Protegido"></div>
+        <div class="foto" data-src="src/image/foto5.jpeg" style="background-image:url('src/image/foto5.jpeg')">
+          <div class="protector"></div>
         </div>
-        <div class="leyenda">Instalación en haras de los vagones - Junio 2025</div>
+        <div class="leyenda">Instalación en haras - Junio 2025</div>
+        <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
       </div>
-
       <div class="foto-card">
-        <div class="foto" role="button" tabindex="0" data-src="src/image/foto1.jpeg"
-             style="background-image:url('src/image/foto1.jpeg')">
-          <div class="protector" title="Protegido"></div>
+        <div class="foto" data-src="src/image/camara3.jpeg" style="background-image:url('src/image/camara3.jpeg')">
+          <div class="protector"></div>
         </div>
         <div class="leyenda">Local comercial - Agosto 2025</div>
+        <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
       </div>
-
       <div class="foto-card">
-        <div class="foto" role="button" tabindex="0" data-src="src/image/foto3.jpeg"
-             style="background-image:url('src/image/foto3.jpeg')">
-          <div class="protector" title="Protegido"></div>
-        </div>
-        <div class="leyenda">Cableado y montaje - Septiembre 2025</div>
-      </div>>
-    </div>
-
-    <!-- Galería -->
-    <div class="galeria" id="galeria">
-      <div class="foto-card">
-        <div class="foto" role="button" tabindex="0" data-src="src/image/foto6.jpeg"
-             style="background-image:url('src/image/foto6.jpeg')">
-          <div class="protector" title="Protegido"></div>
-        </div>
-        <div class="leyenda">Instalación en haras de los vagones - Junio 2025</div>
-      </div>
-
-      <div class="foto-card">
-        <div class="foto" role="button" tabindex="0" data-src="src/image/foto7.jpeg"
-             style="background-image:url('src/image/foto7.jpeg')">
-          <div class="protector" title="Protegido"></div>
+        <div class="foto" data-src="src/image/camara4.jpeg" style="background-image:url('src/image/camara4.jpeg')">
+          <div class="protector"></div>
         </div>
         <div class="leyenda">Local comercial - Agosto 2025</div>
+        <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
       </div>
-
+    </div>
+    <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
+    <!-- Galería 2 -->
+    <div class="galeria">
       <div class="foto-card">
-        <div class="foto" role="button" tabindex="0" data-src="src/image/foto4.jpeg"
-             style="background-image:url('src/image/foto4.jpeg')">
-          <div class="protector" title="Protegido"></div>
+        <div class="foto" data-src="src/image/foto6.jpeg" style="background-image:url('src/image/foto6.jpeg')">
+          <div class="protector"></div>
         </div>
-        <div class="leyenda">Cableado y montaje - Septiembre 2025</div>
-      </div>>
+        <div class="leyenda">Deposito comercial - Junio 2025</div>
+        <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado"> 
+      </div>
+      <div class="foto-card">
+        <div class="foto" data-src="src/image/foto5.jpg" style="background-image:url('src/image/foto5.jpg')">
+          <div class="protector"></div>
+        </div>
+        <div class="leyenda">Instalación en haras - Junio 2025</div>
+        <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
+      </div>
+      <div class="foto-card">
+        <div class="foto" data-src="src/image/foto7.jpeg" style="background-image:url('src/image/foto7.jpeg')">
+          <div class="protector"></div>
+        </div>
+        <div class="leyenda">Instalación en haras - Junio 2025</div>
+        <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
+      </div>
     </div>
 
-      <!-- Galería -->
-      <div class="galeria" id="galeria">
-        <div class="foto-card">
-          <div class="foto" role="button" tabindex="0" data-src="src/image/foto8.jpeg"
-               style="background-image:url('src/image/foto8.jpeg')">
-            <div class="protector" title="Protegido"></div>
-          </div>
-          <div class="leyenda">Instalación en haras de los vagones - Junio 2025</div>
-        </div>
-  
-        <div class="foto-card">
-          <div class="foto" role="button" tabindex="0" data-src="src/image/foto9.jpeg"
-               style="background-image:url('src/image/foto9.jpeg')">
-            <div class="protector" title="Protegido"></div>
-          </div>
-          <div class="leyenda">Local comercial - Agosto 2025</div>
-        </div>
-  
-        <div class="foto-card">
-          <div class="foto" role="button" tabindex="0" data-src="src/image/foto5.jpg"
-               style="background-image:url('src/image/foto5.jpg')">
-            <div class="protector" title="Protegido"></div>
-          </div>
-          <div class="leyenda">Cableado y montaje - Septiembre 2025</div>
-        </div>>
-    
-
-      
-      <!-- Añade más fotos con la misma estructura -->
-    </div>
-
-    <div class="nota">
-      Nota: las imágenes están protegidas para dificultar la descarga directa.
-    </div>
+    <div class="nota">Nota: las imágenes están protegidas.</div>
+    <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
   </div>
 
-  <!-- Modal / Lightbox -->
-  <div id="modal" class="modal" aria-hidden="true" role="dialog">
-    <div class="modal-content" role="document">
+  <!-- Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
       <button class="modal-close" id="btnClose">Cerrar ✕</button>
-      <div class="modal-img" id="modalImg" aria-label="Imagen ampliada">
+      <div class="modal-img" id="modalImg">
         <div class="watermark">© Schelbeth</div>
       </div>
     </div>
   </div>
+  </script>
 
   <script>
     document.addEventListener('contextmenu', e=>e.preventDefault());
@@ -345,19 +194,13 @@
     const modalImg = document.getElementById('modalImg');
     const btnClose = document.getElementById('btnClose');
 
-    document.getElementById('galeria').addEventListener('click', e=>{
-      const foto = e.target.closest('.foto');
-      if (!foto) return;
-      abrirModal(foto.getAttribute('data-src'));
-    });
-
-    document.getElementById('galeria').addEventListener('keydown', e=>{
-      if (e.key === 'Enter' || e.key === ' ') {
+    // Escuchar clicks en todas las galerías
+    document.querySelectorAll('.galeria').forEach(gal => {
+      gal.addEventListener('click', e=>{
         const foto = e.target.closest('.foto');
         if (!foto) return;
-        e.preventDefault();
-        abrirModal(foto.getAttribute('data-src'));
-      }
+        abrirModal(foto.dataset.src);
+      });
     });
 
     function abrirModal(src){
