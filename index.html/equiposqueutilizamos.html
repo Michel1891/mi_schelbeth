@@ -1,38 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>¡Equipo que utilizamos!</title>
+  <meta charset="UTF-8" />
+  <title>Álbum protegido — Equipos que utilizamos</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: white;
-      text-align: center;
-      background-color: #000;
-    }
-
+    /* === TU CSS (sin cambios grandes) === */
     .fondo {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
+      position: fixed;top:0;left:0;width:100%;height:100%;
+      object-fit: cover;z-index:-1;
+    }
+    body {font-family: Arial, sans-serif;text-align:center;background:#f5f5f5;padding-top:40px;}
+    .titulo {font-size:2.5rem;color:#1fabc4;text-align:center;animation:entrada 4s ease-out forwards, brillo 6s infinite alternate;opacity:0;margin:0 auto 20px auto;}
+    .galeria {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;align-items:start;margin-bottom:30px;}
+    .foto-card{width:100%;max-width:320px;background:rgba(0,0,0,0.25);padding:12px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.7);position:relative;margin:0 auto;}
+    .foto{width:100%;aspect-ratio:10/10;border-radius:10px;background-size:cover;background-position:center;border:6px solid #444;cursor:pointer;transition:transform .28s ease;user-select:none;}
+    .foto:hover{transform:translateY(-6px) scale(1.02);}
+    .protector{position:absolute;inset:0;background:transparent;z-index:3;}
+    .leyenda{margin-top:10px;text-align:left;font-size:0.95rem;color:#140505}
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.85);z-index:9999;padding:20px;}
+    .modal.open{display:flex;}
+    .modal-content{width:100%;max-width:1200px;border-radius:12px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.9);background:#0b0b0b;}
+    .modal-img{width:100%;height:80vh;background-size:contain;background-repeat:no-repeat;background-position:center;}
+    .watermark{position:absolute;right:16px;bottom:16px;font-weight:700;font-size:18px;color:rgba(255,255,255,0.18);}
+    .modal-close{position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.1);border:none;padding:8px 10px;border-radius:8px;color:#fff;cursor:pointer;}
+    .nota{margin-top:18px;color:#141212;font-size:0.85rem}
+
+    .logo {
+      width: 100px;
+      height: auto;
+      z-index: 2;
+      margin-bottom: 40px;
+      animation: aparecerZoom 4s ease-out forwards, flotar 6s ease-in-out infinite;
+      opacity: 0;
+  
     }
 
-    .contenido {
-      position: relative;
-      z-index: 1;
-      padding: 50px 20px;
+    @keyframes aparecerZoom {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
     }
 
     .titulo {
       font-size: 2.5rem;
       color: #1fabc4;
+      text-align: center; /* centrado */
       animation: entrada 4s ease-out forwards, brillo 6s infinite alternate;
       opacity: 0;
+      margin: 0 auto 20px auto;
     }
 
     @keyframes entrada {
@@ -53,100 +85,150 @@
       100% {
         text-shadow: 0 0 15px #031411, 0 0 30px #011612;
       }
-
     }
+      .botones {
+      text-align: center; /* centramos todos los botones */
+      margin-bottom: 30px;
+    }
+
     button {
       padding: 10px 18px;
       font-size: 14px;
       border: none;
-      background-color: transparent; /* Fondo transparente */
-      color: #111010; /* Blanco para que se vea sobre la imagen */
+      background-color: transparent;
+      color: #111010;
       border-radius: 6px;
       cursor: pointer;
       transition: color 0.3s ease, text-shadow 0.3s ease;
+      margin: 5px; /* espacio entre botones */
     }
 
     button:hover {
       color: #f0ecec;
       text-shadow: 0 0 10px #0804f7;
     }
-
-    .galeria {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      justify-items: center;
-    }
-
-    .galeria img {
-      width: 100%;
-      max-width: 300px;
-      border-radius: 10px;
-      border: 3px solid white;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .galeria img:hover {
-      transform: scale(1.05);
-      border-color: #00c3ff;
-    }
+  
   </style>
 </head>
 <body>
-  <!-- Imagen de fondo -->
+
+ <!-- Botones -->
+ <div class="botones">
+  <button onclick="location.href='inicio.html'">Inicio</button>
+  <button onclick="location.href='quienessomos.html'">¿Quienes Somos?</button>
+  <button onclick="location.href='nuestrotrabajos.html'">Trabajos Realizados</button>
+  <button onclick="location.href='equiposqueutilizamos.html'">Equipos que utilizamos</button>
+  <button onclick="location.href='contacto.html'">Contactos</button>
+</div>
+  <!-- Fondo -->
   <img class="fondo" src="src/image/fondo2.png" alt="Fondo">
 
+  <h1 class="titulo">Equipos que utilizamos</h1>
+
   <div class="contenido">
-    <!-- Título -->
-    <h1 class="titulo">Equipo que utilizamos</h1>
 
-    <!-- Botón de volver -->
-    <button onclick="location.href='inicio.html'">Inicio</button>
-    <button onclick="location.href='quienessomos.html'">¿Quienes Somos?</button>
-    <button onclick="location.href='nuestrotrabajos.html'">Trabajos Realizados</button>
-    <button onclick="location.href='equiposqueutilizamos.html'">Equipos que utilizamos</button>
-    <button onclick="location.href='contacto.html'">Contactos</button>
-
-    <!-- Galería de imágenes -->
+    <!-- Galería 1 -->
     <div class="galeria">
-      <a href="src/image/dahua.jpg" target="_blank">
-        <img src="src/image/dahua1.jpg" alt="Tutorial 1">
-      </a>
-      <a href="src/image/dahua2.jpeg" target="_blank">
-        <img src="src/image/dahua2.jpeg" alt="Tutorial 2">
-      </a>
-      <a href="src/image/dahua3.png" target="_blank">
-        <img src="src/image/dahua3.png" alt="Tutorial 3">
-      </a>
-      <a href="src/image/dahua4.jpeg" target="_blank">
-        <img src="src/image/dahua4.jpeg" alt="Tutorial 4">
-      </a>
-    <a href="src/image/dahua5.jpg" target="_blank">
-      <img src="src/image/dahua5.jpg" alt="Tutorial 4">
-    </a>
-    <a href="src/image/dahua6.jpeg" target="_blank">
-      <img src="src/image/dahua6.jpeg" alt="Tutorial 4">
-    </a>
-    <a href="src/image/dahua7.jpg" target="_blank">
-      <img src="src/image/dahua7.jpg" alt="Tutorial 1">
-    </a>
-    <a href="src/image/dahua8.jpeg" target="_blank">
-      <img src="src/image/dahua8.jpeg" alt="Tutorial 2">
-    </a>
-    <a href="src/image/dahua9.jpg" target="_blank">
-      <img src="src/image/dahua9.jpg" alt="Tutorial 3">
-    </a>
-    <a href="src/image/camara4.jpeg" target="_blank">
-      <img src="src/image/camara4.jpeg" alt="Tutorial 4">
-    </a>
-  <a href="src/image/dahua1.jpg" target="_blank">
-    <img src="src/image/dahua1.jpg" alt="Tutorial 4">
-  </a>
-  <a href="src/image/dahua6.jpeg" target="_blank">
-    <img src="src/image/dahua6.jpeg" alt="Tutorial 4">
+      <div class="foto-card">
+        <div class="foto" data-src="src/image/dahua.jpg" style="background-image:url('src/image/dahua.jpg')">
+          <div class="protector"></div>
+        </div>
+        <div class="leyenda">Instalación en haras - Junio 2025</div>
+        <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
+      </div>
+      <div class="foto-card">
+        <div class="foto" data-src="src/image/dahua1.jpg" style="background-image:url('src/image/dahua1.jpg')">
+          <div class="protector"></div>
+        </div>
+        <div class="leyenda">Local comercial - Agosto 2025</div>
+        <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
+      </div>
+      <div class="foto-card">
+        <div class="foto" data-src="src/image/dahua3.png" style="background-image:url('src/image/dahua3.png')">
+          <div class="protector"></div>
+        </div>
+        <div class="leyenda">Local comercial - Agosto 2025</div>
+        <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
+      </div>
+    </div>
+    <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
+    <!-- Galería 2 -->
+    <div class="galeria">
+      <div class="foto-card">
+        <div class="foto" data-src="src/image/dahua4.jpeg" style="background-image:url('src/image/dahua4.jpeg')">
+          <div class="protector"></div>
+        </div>
+        <div class="leyenda">Deposito comercial - Junio 2025</div>
+        <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado"> 
+      </div>
+      <div class="foto-card">
+        <div class="foto" data-src="src/image/dahua5.jpg" style="background-image:url('src/image/dahua5.jpg')">
+          <div class="protector"></div>
+        </div>
+        <div class="leyenda">Instalación en haras - Junio 2025</div>
+        <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
+      </div>
+      <div class="foto-card">
+        <div class="foto" data-src="src/image/dahua6.jpeg" style="background-image:url('src/image/dahua6.jpeg')">
+          <div class="protector"></div>
+        </div>
+        <div class="leyenda">Instalación en haras - Junio 2025</div>
+        <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
+      </div>
+    </div>
+
+    <div class="nota">Nota: las imágenes están protegidas.</div>
+    <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" id="btnClose">Cerrar ✕</button>
+      <div class="modal-img" id="modalImg">
+        <div class="watermark">© Schelbeth</div>
+      </div>
     </div>
   </div>
+  </script>
+
+  <script>
+    document.addEventListener('contextmenu', e=>e.preventDefault());
+    document.addEventListener('dragstart', e=>e.preventDefault());
+    document.addEventListener('selectstart', e=>e.preventDefault());
+
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const btnClose = document.getElementById('btnClose');
+
+    // Escuchar clicks en todas las galerías
+    document.querySelectorAll('.galeria').forEach(gal => {
+      gal.addEventListener('click', e=>{
+        const foto = e.target.closest('.foto');
+        if (!foto) return;
+        abrirModal(foto.dataset.src);
+      });
+    });
+
+    function abrirModal(src){
+      modalImg.style.backgroundImage = `url("${src}")`;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarModal(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+      modalImg.style.backgroundImage = '';
+      document.body.style.overflow = '';
+    }
+
+    btnClose.addEventListener('click', cerrarModal);
+    modal.addEventListener('click', e=>{if(e.target===modal)cerrarModal();});
+  </script>
 </body>
 </html>
+
+
 
