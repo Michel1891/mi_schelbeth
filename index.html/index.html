@@ -101,31 +101,31 @@
     }
 
     .botonera {
-  position: fixed;
-  top: 0;
-  right: 0;
-  display: flex;
-  gap: 10px;
-  padding: 15px 20px;
-  background: transparent;  /* Fondo totalmente transparente */
-  z-index: 10; /* delante del fondo */
-}
+      position: fixed;
+      top: 0;
+      right: 0;
+      display: flex;
+      gap: 10px;
+      padding: 15px 20px;
+      background: transparent;
+      z-index: 10;
+    }
 
-.botonera button {
-  padding: 10px 18px;
-  font-size: 14px;
-  border: none;
-  background-color: transparent; /* Fondo transparente */
-  color: #111010; /* Blanco para que se vea sobre la imagen */
-  border-radius: 6px;
-  cursor: pointer;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
-}
+    .botonera button {
+      padding: 10px 18px;
+      font-size: 14px;
+      border: none;
+      background-color: transparent;
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
 
-.botonera button:hover {
-  color: #f0ecec;
-  text-shadow: 0 0 10px #0804f7;
-}
+    .botonera button:hover {
+      color: #f0ecec;
+      text-shadow: 0 0 10px #0804f7;
+    }
   </style>
 </head>
 <body>
@@ -135,23 +135,42 @@
 
   <!-- Contenido principal -->
   <div class="contenido">
-    <!-- Imagen animada centrada -->
     <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
-
-    <!-- Título animado -->
     <h1 class="titulo">INNOVACIÓN EN SEGURIDAD</h1>
   </div>
 
-  <!-- Botonera inferior -->
+  <!-- Botonera -->
   <div class="botonera">
     <button onclick="location.href='inicio.html'">Inicio</button>
-    <button onclick="location.href='quienessomos.html'">¿Quienes Somos?</button>
+    <button onclick="location.href='quienessomos.html'">¿Quiénes Somos?</button>
     <button onclick="location.href='nuestrotrabajos.html'">Trabajos Realizados</button>
     <button onclick="location.href='equiposqueutilizamos.html'">Equipos que utilizamos</button>
     <button onclick="location.href='contacto.html'">Contactos</button>
   </div>
 
+  <!-- Firebase -->
+  <script type="module">
+    // Importar Firebase desde el CDN
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+    // Configuración Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCo3AluihZR3jxoj88KctYJz5ZBdXxX_vo",
+      authDomain: "developermiranda-28c24.firebaseapp.com",
+      projectId: "developermiranda-28c24",
+      storageBucket: "developermiranda-28c24.appspot.com",
+      messagingSenderId: "396233852159",
+      appId: "1:396233852159:web:82af10b9facfe39dfe78ca",
+      measurementId: "G-SJPY70EXN6"
+    };
+
+    // Inicializar Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    console.log("Firebase inicializado correctamente");
+  </script>
+
 </body>
 </html>
-
-
