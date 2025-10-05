@@ -3,6 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <title>SCHELBETH SYSTEMS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 🧩 Favicon / Logo -->
+  <link rel="icon" href="src/image/logo1.png" type="image/png">
+  <link rel="apple-touch-icon" href="src/image/logo1.png">
+
+  <!-- 🧠 Metadatos SEO -->
+  <meta name="title" content="SCHELBETH SYSTEMS — Innovación en Seguridad">
+  <meta name="description" content="SCHELBETH SYSTEMS ofrece soluciones integrales en seguridad electrónica, innovación tecnológica y desarrollo digital.">
+  <meta name="keywords" content="SchelBeth, seguridad, tecnología, innovación, sistemas, cámaras, alarmas, Uruguay">
+
+  <!-- 🌐 Open Graph (Facebook, WhatsApp, LinkedIn) -->
+  <meta property="og:title" content="SCHELBETH SYSTEMS — Innovación en Seguridad">
+  <meta property="og:description" content="Soluciones tecnológicas integrales en seguridad e innovación digital.">
+  <meta property="og:image" content="https://www.schelbeth.com/src/image/logo1.png">
+  <meta property="og:url" content="https://www.schelbeth.com">
+  <meta property="og:type" content="website">
+
+  <!-- 🐦 Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SCHELBETH SYSTEMS — Innovación en Seguridad">
+  <meta name="twitter:description" content="Soluciones tecnológicas integrales en seguridad e innovación digital.">
+  <meta name="twitter:image" content="https://www.schelbeth.com/src/image/logo1.png">
+
+  <!-- 🎨 Estilos -->
   <style>
     * {
       margin: 0;
@@ -116,14 +141,14 @@
       font-size: 14px;
       border: none;
       background-color: transparent;
-      color: #1a0101;
+      color: #0e0606;
       border-radius: 6px;
       cursor: pointer;
       transition: color 0.3s ease, text-shadow 0.3s ease;
     }
 
     .botonera button:hover {
-      color: #f0ecec;
+      color: #fff;
       text-shadow: 0 0 10px #0804f7;
     }
   </style>
@@ -131,10 +156,11 @@
 <body>
 
   <!-- Imagen de fondo -->
-  <img class="fondo" src="src/image/fondo2.png" alt="Fondo">
+  <img class="fondo" src="src/image/fondo2.png" alt="Fondo Schelbeth Systems">
+
   <!-- Contenido principal -->
   <div class="contenido">
-    <img class="logo" src="src/image/logo1.png" alt="">
+    <img class="logo" src="src/image/logo1.png" alt="Logo Schelbeth Systems">
     <h1 class="titulo">INNOVACIÓN EN SEGURIDAD</h1>
   </div>
 
@@ -149,31 +175,26 @@
 
   <!-- Firebase -->
   <script type="module">
-    // Importar Firebase desde el CDN
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
     import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
-    // Configuración Firebase
     const firebaseConfig = {
-  apiKey: "AIzaSyDbOT4flzofmzYv4w1U7TNvmKnTxxxcfNQ",
-  authDomain: "schelbeth.firebaseapp.com",
-  projectId: "schelbeth",
-  storageBucket: "schelbeth.firebasestorage.app",
-  messagingSenderId: "884436135009",
-  appId: "1:884436135009:web:b76496a3e5f249193e0e20",
-  measurementId: "G-ZG8GNE7SHJ"
+      apiKey: "AIzaSyDbOT4flzofmzYv4w1U7TNvmKnTxxxcfNQ",
+      authDomain: "schelbeth.firebaseapp.com",
+      projectId: "schelbeth",
+      storageBucket: "schelbeth.firebasestorage.app",
+      messagingSenderId: "884436135009",
+      appId: "1:884436135009:web:b76496a3e5f249193e0e20",
+      measurementId: "G-ZG8GNE7SHJ"
     };
-    // Inicializar Firebase
+
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-
     console.log("Firebase inicializado correctamente");
   </script>
 
 </body>
 </html>
-
-
 
 
 
