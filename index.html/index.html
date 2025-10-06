@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>SCHELBETH SYSTEMS</title>
+  <title>Schelbeth systems</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- 🧩 Favicon / Logo -->
@@ -14,7 +14,7 @@
   <meta name="description" content="SCHELBETH SYSTEMS ofrece soluciones integrales en seguridad electrónica, innovación tecnológica y desarrollo digital.">
   <meta name="keywords" content="SchelBeth, seguridad, tecnología, innovación, sistemas, cámaras, alarmas, Uruguay">
 
-  <!-- 🌐 Open Graph -->
+  <!-- 🌐 Open Graph (Facebook, WhatsApp, LinkedIn) -->
   <meta property="og:title" content="SCHELBETH SYSTEMS — Innovación en Seguridad">
   <meta property="og:description" content="Soluciones tecnológicas integrales en seguridad e innovación digital.">
   <meta property="og:image" content="https://www.schelbeth.com/src/image/logo1.png">
@@ -41,7 +41,7 @@
       background-color: #000;
       text-align: center;
       height: 100vh;
-      overflow: auto;
+      overflow: hidden;
       position: relative;
     }
 
@@ -73,36 +73,56 @@
       margin-bottom: 40px;
       animation: aparecerZoom 4s ease-out forwards, flotar 6s ease-in-out infinite;
       opacity: 0;
-      cursor: pointer;
     }
 
     @keyframes aparecerZoom {
-      0% { transform: scale(0.5); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     @keyframes flotar {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
     }
 
     .titulo {
       font-size: 3.5rem;
-      color: #0796af;
-      text-align: center; /* centrado */
+      color: #1fabc4;
       animation: entrada 4s ease-out forwards, brillo 6s infinite alternate;
       opacity: 0;
-      margin: 0 auto 20px auto;
     }
 
     @keyframes entrada {
-      0% { transform: translateY(-50px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
+      0% {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     @keyframes brillo {
-      0% { text-shadow: 0 0 5px #1fabc4, 0 0 10px #0ff; }
-      100% { text-shadow: 0 0 15px #00d4ff, 0 0 40px #00f6ff; }
+      0% {
+        text-shadow: 0 0 5px #021a15, 0 0 10px #02130f;
+      }
+      100% {
+        text-shadow: 0 0 15px #031411, 0 0 30px #011612;
+      }
     }
 
     .botonera {
@@ -110,44 +130,27 @@
       top: 0;
       right: 0;
       display: flex;
-      flex-wrap: wrap;
       gap: 10px;
       padding: 15px 20px;
+      background: transparent;
       z-index: 10;
-      justify-content: flex-end;
     }
 
     .botonera button {
       padding: 10px 18px;
-      font-size: 16px;
-      border: 1px solid #f7fafa;
+      font-size: 18px;
+      border: none;
       background-color: transparent;
-      color: #160d0d;
+      color: #0e0606;
       border-radius: 6px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
     }
 
     .botonera button:hover {
-      background: #bdf0e5;
-      color: #000;
-      box-shadow: 0 0 15px #00e0ff;
-    }
-
-    /* 📱 Adaptación móvil */
-    @media (max-width: 768px) {
-      .titulo { font-size: 2rem; }
-      .botonera {
-        position: static;
-        justify-content: center;
-        background: rgba(0, 0, 0, 0.8);
-      }
-      .botonera button { 
-        font-size: 14px; 
-        padding: 10px 16px; 
-        flex: 1 1 45%; 
-        min-width: 120px;
-      }
+      color: #fff;
+      text-shadow: 0 0 10px #0804f7;
+      
     }
   </style>
 </head>
@@ -158,7 +161,7 @@
 
   <!-- Contenido principal -->
   <div class="contenido">
-    <img class="logo" src="src/image/logo1.png" alt="Logo Schelbeth Systems" onclick="location.href='inicio.html'">
+    <img class="logo" src="src/image/logo1.png" alt="Logo Schelbeth Systems">
     <h1 class="titulo">INNOVACIÓN EN SEGURIDAD</h1>
   </div>
 
@@ -188,7 +191,7 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    console.log("✅ Firebase inicializado correctamente");
+    console.log("Firebase inicializado correctamente");
   </script>
 
 </body>
