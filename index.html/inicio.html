@@ -134,6 +134,8 @@
       padding: 15px 20px;
       background: transparent;
       z-index: 10;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .botonera button {
@@ -150,7 +152,47 @@
     .botonera button:hover {
       color: #fff;
       text-shadow: 0 0 10px #0804f7;
-      
+    }
+
+    /* 📱 Ajustes responsive para pantallas pequeñas */
+    @media (max-width: 480px) {
+      body {
+        overflow: auto;
+        height: auto;
+        padding: 10px;
+      }
+
+      .contenido {
+        height: auto;
+        padding: 40px 10px;
+      }
+
+      .logo {
+        width: 220px;
+        margin-bottom: 25px;
+      }
+
+      .titulo {
+        font-size: 1.4rem;
+        margin: 0 10px;
+        line-height: 1.4em;
+      }
+
+      .botonera {
+        position: relative;
+        top: auto;
+        right: auto;
+        justify-content: center;
+        padding: 10px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .botonera button {
+        font-size: 13px;
+        padding: 8px 12px;
+        color: #fff;
+      }
     }
   </style>
 </head>
@@ -196,15 +238,6 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
 
 
 
