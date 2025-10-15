@@ -14,245 +14,110 @@
   <meta name="description" content="SCHELBETH SYSTEMS ofrece soluciones integrales en seguridad electrónica, innovación tecnológica y desarrollo digital.">
   <meta name="keywords" content="SchelBeth, seguridad, tecnología, innovación, sistemas, cámaras, alarmas, Uruguay">
 
-  <!-- 🌐 Open Graph -->
+  <!-- 🌐 Open Graph (Facebook, WhatsApp, LinkedIn) -->
   <meta property="og:title" content="SCHELBETH SYSTEMS — Innovación en Seguridad">
   <meta property="og:description" content="Soluciones tecnológicas integrales en seguridad e innovación digital.">
   <meta property="og:image" content="https://www.schelbeth.com/src/image/logo1.png">
   <meta property="og:url" content="https://www.schelbeth.com">
   <meta property="og:type" content="website">
 
+  <!-- 🐦 Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SCHELBETH SYSTEMS — Innovación en Seguridad">
+  <meta name="twitter:description" content="Soluciones tecnológicas integrales en seguridad e innovación digital.">
+  <meta name="twitter:image" content="https://www.schelbeth.com/src/image/logo1.png">
+
   <!-- 🎨 Estilos -->
   <style>
-    /* === ESTILOS PRINCIPALES === */
-    .fondo {
-      position: fixed;top:0;left:0;width:100%;height:100%;
-      object-fit: cover;z-index:-1;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #f5f5f5;
-      padding-top: 40px;
-      margin: 0;
-    }
+    .fondo { position: fixed; top:0; left:0; width:100%; height:100%; object-fit: cover; z-index:-1; }
+    body { font-family: Arial, sans-serif; text-align:center; background:#f5f5f5; padding-top:40px; }
+    .titulo { font-size:2.5rem; color:#1fabc4; text-align:center; animation:entrada 4s ease-out forwards, brillo 6s infinite alternate; opacity:0; margin:0 auto 20px auto; }
+    .galeria { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; align-items:start; margin-bottom:30px; }
+    .foto-card { width:100%; max-width:320px; background:rgba(0,0,0,0.25); padding:12px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.7); position:relative; margin:0 auto; }
+    .foto { width:100%; aspect-ratio:10/10; border-radius:10px; background-size:cover; background-position:center; border:6px solid #444; cursor:pointer; transition:transform .28s ease; user-select:none; }
+    .foto:hover { transform:translateY(-6px) scale(1.02); }
+    .protector { position:absolute; inset:0; background:transparent; z-index:3; }
+    .leyenda { margin-top:10px; text-align:left; font-size:0.95rem; color:#140505 }
+    .modal { position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.85); z-index:9999; padding:20px; }
+    .modal.open { display:flex; }
+    .modal-content { width:100%; max-width:1200px; border-radius:12px; position:relative; box-shadow:0 20px 60px rgba(0,0,0,0.9); background:#0b0b0b; }
+    .modal-img { width:100%; height:80vh; background-size:contain; background-repeat:no-repeat; background-position:center; }
+    .watermark { position:absolute; right:16px; bottom:16px; font-weight:700; font-size:18px; color:rgba(255,255,255,0.18); }
+    .modal-close { position:absolute; top:12px; right:12px; background:rgba(255,255,255,0.1); border:none; padding:8px 10px; border-radius:8px; color:#fff; cursor:pointer; }
+    .nota { margin-top:18px; color:#141212; font-size:0.85rem }
 
-    .titulo {
-      font-size: 2.5rem;
-      color: #1fabc4;
-      text-align: center;
-      animation: entrada 4s ease-out forwards, brillo 6s infinite alternate;
-      opacity: 0;
-      margin: 0 auto 20px auto;
-    }
+    .logo { width:100px; height:auto; z-index:2; margin-bottom:40px; animation:aparecerZoom 4s ease-out forwards, flotar 6s ease-in-out infinite; opacity:0; }
 
-    .galeria {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      align-items: start;
-      margin-bottom: 30px;
-    }
+    @keyframes aparecerZoom { 0% { transform: scale(0.5); opacity:0; } 100% { transform: scale(1); opacity:1; } }
+    @keyframes flotar { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+    @keyframes entrada { 0% { transform: translateY(-50px); opacity:0; } 100% { transform: translateY(0); opacity:1; } }
+    @keyframes brillo { 0% { text-shadow: 0 0 5px #021a15,0 0 10px #02130f; } 100% { text-shadow:0 0 15px #031411,0 0 30px #011612; } }
 
-    .foto-card {
-      width: 100%;
-      max-width: 320px;
-      background: rgba(0, 0, 0, 0.25);
-      padding: 12px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
-      position: relative;
-      margin: 0 auto;
-    }
+    .botones { text-align:center; margin-bottom:30px; }
+    button { padding:10px 18px; font-size:14px; border:none; background-color:transparent; color:#111010; border-radius:6px; cursor:pointer; transition:color 0.3s ease, text-shadow 0.3s ease; margin:5px; }
+    button:hover { color:#f0ecec; text-shadow:0 0 10px #0804f7; }
 
-    .foto {
-      width: 100%;
-      aspect-ratio: 10/10;
-      border-radius: 10px;
-      background-size: cover;
-      background-position: center;
-      border: 6px solid #444;
-      cursor: pointer;
-      transition: transform 0.28s ease;
-      user-select: none;
-    }
-
-    .foto:hover { transform: translateY(-6px) scale(1.02); }
-
-    .leyenda {
-      margin-top: 10px;
-      text-align: left;
-      font-size: 0.95rem;
-      color: #140505;
-    }
-
-    .logo {
-      width: 100px;
-      height: auto;
-      margin-bottom: 40px;
-      animation: aparecerZoom 4s ease-out forwards, flotar 6s ease-in-out infinite;
-      opacity: 0;
-    }
-
-    .nota {
-      margin-top: 18px;
-      color: #141212;
-      font-size: 0.85rem;
-    }
-
-    .botones {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    button {
-      padding: 10px 18px;
-      font-size: 14px;
-      border: none;
-      background-color: transparent;
-      color: #111010;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-      margin: 5px;
-    }
-
-    button:hover {
-      color: #f0ecec;
-      text-shadow: 0 0 10px #0804f7;
-    }
-
-    /* === ANIMACIONES === */
-    @keyframes aparecerZoom {
-      0% { transform: scale(0.5); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    @keyframes flotar {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
-    }
-
-    @keyframes entrada {
-      0% { transform: translateY(-50px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-
-    @keyframes brillo {
-      0% { text-shadow: 0 0 5px #021a15, 0 0 10px #02130f; }
-      100% { text-shadow: 0 0 15px #031411, 0 0 30px #011612; }
-    }
-
-    /* === MODAL === */
-    .modal {
-      position: fixed; inset: 0;
-      display: none; align-items: center; justify-content: center;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 9999;
-      padding: 20px;
-    }
-
-    .modal.open { display: flex; }
-
-    .modal-content {
-      width: 100%; max-width: 1200px;
-      border-radius: 12px; position: relative;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
-      background: #0b0b0b;
-    }
-
-    .modal-img {
-      width: 100%; height: 80vh;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    .modal-close {
-      position: absolute; top: 12px; right: 12px;
-      background: rgba(255, 255, 255, 0.1);
-      border: none; padding: 8px 10px;
-      border-radius: 8px; color: #fff;
-      cursor: pointer;
-    }
-
-    .watermark {
-      position: absolute; right: 16px; bottom: 16px;
-      font-weight: 700; font-size: 18px;
-      color: rgba(255, 255, 255, 0.18);
-    }
-
-    /* === 📱 BLOQUE RESPONSIVE (max-width: 480px) === */
+    /* === Ajustes solo para celulares === */
     @media (max-width: 480px) {
-      body {
-        padding-top: 20px;
-      }
-
-      .titulo {
-        font-size: 1.6rem;
-        margin-bottom: 15px;
-      }
-
-      .logo {
-        width: 70px;
-        margin-bottom: 20px;
-      }
-
-      .botones {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
-        margin-bottom: 20px;
-      }
-
-      button {
-        padding: 8px 12px;
-        font-size: 12px;
-      }
-
-      .galeria {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        padding: 0 10px;
-      }
-
-      .foto-card {
-        max-width: 100%;
-        padding: 8px;
-      }
-
-      .leyenda {
-        font-size: 0.85rem;
-      }
-
-      .modal-content {
-        max-width: 95%;
-      }
-
-      .modal-img {
-        height: 60vh;
-      }
+      body { padding-top: 20px; }
+      .titulo { font-size:1.8rem; margin-bottom:15px; }
+      .logo { width:70px; margin-bottom:20px; }
+      .botones button { font-size:12px; padding:8px 12px; margin:3px; }
+      .contenido { padding:20px 10px; }
+      .galeria { grid-template-columns:1fr; gap:15px; }
+      .foto-card { max-width:100%; padding:8px; }
+      .leyenda { font-size:0.85rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Botones -->
-  <div class="botones">
-    <button onclick="location.href='inicio.html'">Inicio</button>
-    <button onclick="location.href='quienessomos.html'">¿Quienes Somos?</button>
-    <button onclick="location.href='nuestrotrabajos.html'">Trabajos Realizados</button>
-    <button onclick="location.href='equiposqueutilizamos.html'">Equipos que utilizamos</button>
-    <button onclick="location.href='contacto.html'">Contactos</button>
+<!-- Botones -->
+<div class="botones">
+  <button onclick="location.href='inicio.html'">Inicio</button>
+  <button onclick="location.href='quienessomos.html'">¿Quienes Somos?</button>
+  <button onclick="location.href='nuestrotrabajos.html'">Trabajos Realizados</button>
+  <button onclick="location.href='equiposqueutilizamos.html'">Equipos que utilizamos</button>
+  <button onclick="location.href='contacto.html'">Contactos</button>
+</div>
+
+<!-- Fondo -->
+<img class="fondo" src="src/image/fondo2.png" alt="Fondo">
+
+<h1 class="titulo">Trabajos Realizados</h1>
+
+<div class="contenido">
+  <!-- Galería 1 -->
+  <div class="galeria">
+    <div class="foto-card">
+      <div class="foto" data-src="src/image/foto5.jpeg" style="background-image:url('src/image/foto5.jpeg')">
+        <div class="protector"></div>
+      </div>
+      <div class="leyenda">Instalación en haras - Junio 2025</div>
+      <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
+    </div>
+    <div class="foto-card">
+      <div class="foto" data-src="src/image/camara3.jpeg" style="background-image:url('src/image/camara3.jpeg')">
+        <div class="protector"></div>
+      </div>
+      <div class="leyenda">Local comercial - Agosto 2025</div>
+      <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
+    </div>
+    <div class="foto-card">
+      <div class="foto" data-src="src/image/camara4.jpeg" style="background-image:url('src/image/camara4.jpeg')">
+        <div class="protector"></div>
+      </div>
+      <div class="leyenda">Local comercial - Agosto 2025</div>
+      <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
+    </div>
   </div>
 
-  <!-- Fondo -->
-  <img class="fondo" src="src/image/fondo2.png" alt="Fondo">
+  <img class="logo" src="src/image/logo1.png" alt="Logo centrado animado">
 
-  <h1 class="titulo">Trabajos Realizados</h1>
-
-  <!-- Aquí sigue el contenido y modal igual que antes -->
-</body>
-</html>
-
+  <!-- Galería 2 -->
+  <div class="galeria">
+    <div class="foto-card">
+      <div class="foto" data-src="src/image/foto6.jpeg" style="background-image:url('src/image/foto6.jpeg')">
+        <div class="protector"></div>
+      </div>
+      <div class="leyenda">Deposito comercial - Junio 2025</div
